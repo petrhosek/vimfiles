@@ -2,6 +2,8 @@
   set guifont=Menlo\ 9
   " Start without the toolbar
   set guioptions-=T
+  " Start without the menu
+  set guioptions-=m
 
   " Default gui color scheme
   color molokai
@@ -231,10 +233,13 @@ RUBY
     endfunction
 
     " Define the NERDTree-aware aliases
-    call s:DefineCommand("cd", "ChangeDirectory")
-    call s:DefineCommand("touch", "Touch")
-    call s:DefineCommand("rm", "Remove")
-    call s:DefineCommand("e", "Edit")
-    call s:DefineCommand("mkdir", "Mkdir")
+    if exists("loaded_nerd_tree")
+      call s:DefineCommand("cd", "ChangeDirectory")
+      call s:DefineCommand("touch", "Touch")
+      call s:DefineCommand("rm", "Remove")
+      call s:DefineCommand("e", "Edit")
+      call s:DefineCommand("mkdir", "Mkdir")
+      cabbrev Edit! e!
+    endif
   " }
 " }

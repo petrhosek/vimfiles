@@ -3,7 +3,6 @@
 " }
 
 " Setup Bundle Support (pathogen plugin) {
-  " Use pathogen to manage and load plugins
   filetype off
   runtime! autoload/pathogen.vim
   silent! call pathogen#runtime_append_all_bundles()
@@ -21,18 +20,21 @@
 " General {
   " Syntax highlighting
   syntax enable
-  filetype plugin indent on
 
   set shortmess+=filmnrxoOtT
   set viewoptions=folds,options,cursor,unix,slash
   set virtualedit=onemore
 
   set history=50
+  set backup
 
   " Setting up the directories {
     " Setup directories for backup, swap and view files
+    "set backupdir=./.backup,.,/tmp
+    "set directory=.,./.backup,/tmp
+
     set backupdir=~/.vim/backup
-    set directory=~/.vim/swap
+    set directory=~/.vim/backup
     set viewdir=~/.vim/view
 
     " Creating directories if they don't exist
@@ -42,8 +44,8 @@
 
     " Automatically load/save view (state)
     if has('autocmd')
+      autocmd BufWinLeave * mkview!
       autocmd BufWinEnter * silent! loadview
-      autocmd BufWinLeave * silent! mkview
     endif
   " }
 " }
@@ -54,15 +56,14 @@
 
   " Whitespace stuff
   set nowrap
-  set tabstop=2
+  "set tabstop=2
+  set expandtab
   set shiftwidth=2
   set softtabstop=2
-  set expandtab
   set list listchars=tab:\ \ ,trail:·
 
   " (auto-)indentation
   set autoindent
-  set smarttab
   set pastetoggle=<F2>
 " }
 
@@ -129,7 +130,7 @@
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
       \   exe "normal! g'\"" |
       \ endif
-      " don't write swapfile on most commonly used directories for NFS mounts or USB sticks
+      " Don't write swapfile on most commonly used directories for NFS mounts or USB sticks
       autocmd BufNewFile,BufReadPre /media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
 
       " Switch to working directory of the open file
@@ -139,11 +140,18 @@
     " Enable formatting based on file types
     augroup filetypes
       autocmd!
-      autocmd FileType ruby,eruby,yaml,cucumber,vim,lua,latex,tex set autoindent shiftwidth=2 softtabstop=2 expandtab
-      autocmd BufRead *.mkd,*.markdown set ai formatoptions=tcroqn2 comments=n:>
+      autocmd FileType ruby,eruby,yaml,cucumber,vim,lua,latex,tex set expandtab shiftwidth=2 softtabstop=2
+      autocmd FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
+      autocmd FileType make set noexpandtab
+      autocmd BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} set ai formatoptions=tcroqn2 comments=n:>
+      autocmd BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set filetype=ruby
       autocmd BufRead *.json set filetype=json
-    augroup END
+      autocmd BufRead *.txt set wrap wrapmargin=72 textwidth=72
+   augroup END
   endif
+
+  " Load the plugin and indent settings for the detected filetype
+  filetype plugin indent on
 " }
 
 " Key Mappings {
@@ -171,22 +179,31 @@
 
   " Clear the search buffer
   nnoremap <silent> <leader><space> :noh<CR>
+ 
+  " Toggle settings
+  nnoremap <leader>c :set cursorline!<CR>
+
+  " Opens an edit command with the path of the currently edited file filled in
+  map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+  " Opens a tab edit command with the path of the currently edited file filled in
+  map <leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+
+  " Inserts the path of the currently edited file into a command
+  cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
   " Set the keys to turn spell checking on/off
   nmap <silent> <F8> <Esc>:setlocal spell spelllang=en_us<CR>
   nmap <silent> <S-F8> <Esc>:setlocal nospell<CR>
-
-  " Toggle settings
-  nnoremap <leader>c :set cursorline!<CR>
 " }
 
 " Functions {
-  map ,s :call StripWhitespace ()<CR>
+  map <leader>s :call StripWhitespace ()<CR>
   function! StripWhitespace ()
       exec ':%s/ \+$//gc'
   endfunction
 
-  map ,df :call DistractionFreeWriting ()<CR>
+  map <leader>df :call DistractionFreeWriting ()<CR>
   function! DistractionFreeWriting ()
     exec ':set fuoptions='
     exec ':set fullscreen'
@@ -232,6 +249,10 @@
     let g:gist_open_browser_after_post = 1
   " }
 
+  " Hammer {
+    map <buffer> <leader>p :Hammer<CR>
+  " }
+
   " LaTeX {
     set grepprg=grep\ -nH\ $*
     let g:tex_flavor='latex'
@@ -257,7 +278,7 @@
   " Taglist {
     let Tlist_Use_Right_Window = 1
 
-    map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+    map <leader>rt :!ctags --extra=+f -R *<CR><CR>
     map <C-\> :tnext<CR>
     nnoremap <silent> <F7> :TlistToggle<CR>
   " }
@@ -276,12 +297,12 @@
       endif
     endfunction
 
-    " Define Scratch key mapping
+  " Define Scratch key mapping
     nmap <leader><tab> :call ToggleScratch()<CR>
   " }
 
   " Syntastic {
-    let g:syntastic_enable_signs   = 1
+    let g:syntastic_enable_signs = 1
     let g:syntastic_quiet_warnings = 1
   " }
 
