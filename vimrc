@@ -39,12 +39,11 @@
 
     " Creating directories if they don't exist
     silent execute '!mkdir -p $HOME/.vim/backup'
-    silent execute '!mkdir -p $HOME/.vim/swap'
     silent execute '!mkdir -p $HOME/.vim/view'
 
     " Automatically load/save view (state)
     if has('autocmd')
-      autocmd BufWinLeave * mkview!
+      autocmd BufWinLeave * silent! mkview!
       autocmd BufWinEnter * silent! loadview
     endif
   " }
@@ -247,10 +246,6 @@
     endif
     let g:gist_detect_filetype = 1
     let g:gist_open_browser_after_post = 1
-  " }
-
-  " Hammer {
-    map <buffer> <leader>p :Hammer<CR>
   " }
 
   " LaTeX {
