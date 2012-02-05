@@ -20,6 +20,7 @@
 " General {
   " Syntax highlighting
   syntax enable
+  set t_Co=256
 
   set shortmess+=filmnrxoOtT
   set viewoptions=folds,options,cursor,unix,slash
@@ -230,10 +231,6 @@
     " Settings for ack.vim; uncomment suitable line if necessary
     "let g:ackprg="ack -H --nocolor --nogroup"         " if ack --version < 1.92
     "let g:ackprg="ack-grep -H --nocolor --nogroup"    " for Debian/Ubuntu
-  " }
-
-  " Command-T {
-    let g:CommandTMaxHeight=20
   " }
 
   " Conque {
