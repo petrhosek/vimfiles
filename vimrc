@@ -261,14 +261,6 @@
     let NERDTreeMapActivateNode='<CR>'
   " }
 
-  " Rails {
-    let g:rails_statusline=0
-  " }
-
-  " Rainbows {
-    nmap <leader>R :ToggleRaibowParenthesis<CR>
-  " }
-
   " Taglist {
     let Tlist_Use_Right_Window = 1
 

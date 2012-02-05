@@ -76,9 +76,6 @@
 [submodule "bundle/ruby"]
 	path = bundle/ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
-[submodule "bundle/rails"]
-	path = bundle/rails
-	url = git://github.com/tpope/vim-rails.git
 [submodule "bundle/conque"]
 	path = bundle/conque
 	url = git://github.com/rson/vim-conque.git
