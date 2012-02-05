@@ -106,8 +106,8 @@
   set scrolloff=2
 
   " Enable code folding by syntax and disable folding by default
-  setlocal foldmethod=syntax
-  setlocal nofoldenable
+  "setlocal foldmethod=syntax
+  "setlocal nofoldenable
 
   " Highlight any text that goes beyond the 80th character of a line
   highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -133,19 +133,21 @@
       autocmd BufNewFile,BufReadPre /media/*,/mnt/* set directory=~/tmp,/var/tmp,/tmp
 
       " Switch to working directory of the open file
-      autocmd BufEnter * lcd %:p:h
+      autocmd BufEnter * if expand('%:p') !~ '://' | cd %:p:h | endif
+      "autocmd BufEnter * lcd %:p:h
     augroup END
 
     " Enable formatting based on file types
     augroup filetypes
       autocmd!
+      autocmd FileType c,h,cpp,hpp,cc set expandtab softtabstop=4 tabstop=4 shiftwidth=4
       autocmd FileType ruby,eruby,yaml,cucumber,vim,lua,latex,tex set expandtab shiftwidth=2 softtabstop=2
-      autocmd FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
+      autocmd FileType python set expandtab softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
       autocmd FileType make set noexpandtab
       autocmd BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} set ai formatoptions=tcroqn2 comments=n:>
       autocmd BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set filetype=ruby
       autocmd BufRead *.json set filetype=json
-      autocmd BufRead *.txt set wrap wrapmargin=72 textwidth=72
+      autocmd BufRead *.txt set wrap wrapmargin=79 textwidth=79
    augroup END
   endif
 
@@ -170,7 +172,7 @@
   map <S-C-T> :tabnew<CR>
   map <S-C-left> :tabprev<CR>
   map <S-C-right> :tabnext<CR>
-  map <C-W> :tabclose<CR>
+  "map <C-W> :tabclose<CR>
 
   " Easier moving between wrapped lines
   nmap <silent> j gj
