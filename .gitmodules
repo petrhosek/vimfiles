@@ -97,3 +97,6 @@
 [submodule "bundle/dart"]
 	path = bundle/dart
 	url = git://github.com/bartekd/vim-dart.git
+[submodule "bundle/pegjs"]
+	path = bundle/pegjs
+	url = git://github.com/alunny/pegjs-vim.git

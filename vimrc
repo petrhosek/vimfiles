@@ -1,6 +1,6 @@
-" # [@petrh](http://github.com/petrh)'s Vim
+" # [@petrh](http://github.com/petrh)'s vim configuration
 "
-" To use this Vim configuration:
+" To use this vim configuration:
 "
 " 1.  Clone the repository:
 "
@@ -23,32 +23,48 @@
 " }
 
 " ## Bundles
-"
-" Using [Pathogen](https://github.com/tpope/vim-pathogen) package format for Vim _packages_
-" together with [Vundle](https://github.com/gmarik/vundle) as a Pathogen package manager.
-"
+
+" Using [Pathogen](https://github.com/tpope/vim-pathogen) package format for
+" vim _packages_.
+
 " Call infect to get the bundle handling started
 call pathogen#infect()
 
 " ## Basic Setup
 
-set nocompatible      " Use vim, no vi defaults
-set number            " Show line numbers
-set ruler             " Show line and column number
-syntax enable         " Turn on syntax highlighting allowing local overrides
-set encoding=utf-8    " Set default encoding to UTF-8
+" Use vim, not vi defaults.
+set nocompatible
+" Set default encoding to UTF-8.
+set encoding=utf-8
+" Show line numbers.
+set number
+" Show line and column number.
+set ruler
+" Turn on syntax highlighting allowing local overrides.
+syntax on
 
 " ### Whitespace
-set nowrap                        " don't wrap lines
-set tabstop=2                     " a tab is two spaces
-set shiftwidth=2                  " an autoindent (with <<) is two spaces
-set expandtab                     " use spaces, not tabs
-set list                          " Show invisible characters
-set backspace=indent,eol,start    " backspace through everything in insert mode
 
-if exists("g:enable_mvim_shift_arrow")
-  let macvim_hig_shift_movement = 1 " mvim shift-arrow-keys
-endif
+" Don't wrap lines.
+set nowrap
+
+" Highligh all characters past 78 columns.
+augroup vimrc_autocmds
+  autocmd BufEnter * highlight OverLength ctermbg=darkred guibg=#FFD9D9
+  autocmd BufEnter * match OverLength /\%78v.*/
+augroup END
+
+" Use 2 spaces for indentation.
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set expandtab
+
+" Show invisible characters.
+set list
+
+" Backspace through everything in insert mode.
+set backspace=indent,eol,start
 
 " List chars
 set listchars=""                  " Reset the listchars
@@ -60,31 +76,39 @@ set listchars+=extends:◄          " The character to show in the last column w
 set listchars+=precedes:►         " The character to show in the last column when wrap is off and the line continues beyond the right of the screen
 
 " ### Searching
-set hlsearch    " highlight matches
-set incsearch   " incremental searching
-set ignorecase  " searches are case insensitive...
-set smartcase   " ... unless they contain at least one capital letter
+
+" Highlight search matches.
+set hlsearch
+" Use incremental search.
+set incsearch
+" Search is case insensitive...
+set ignorecase
+" ...unless it contains at least one capital letter
+set smartcase
 
 " ### Wild settings
 
 " TODO: Investigate the precise meaning of these settings
 " set wildmode=list:longest,list:full
 
-" Disable output and VCS files
+" Disable output and VCS files.
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
 
-" Disable archive files
+" Disable archive files.
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 
-" Ignore bundler and sass cache
+" Disable bundler and sass cache.
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 
-" Disable temp and backup files
+" Disable temp and backup files.
 set wildignore+=*.swp,*~,._*
 
 " ### Backup and swap files
-set backupdir=~/.vim/backup//    " where to put backup files.
-set directory=~/.vim/swap//      " where to put swap files.
+
+" No backup files.
+set nobackup
+" No swap files.
+set noswapfile
 
 " ## Autocommands
 
@@ -155,7 +179,12 @@ if has('statusline')
   set statusline+=%=%-14.(%l,%c%V%)\ %p%%     " Right aligned file nav info
 endif
 
+if exists("g:enable_mvim_shift_arrow")
+  let macvim_hig_shift_movement = 1 " mvim shift-arrow-keys
+endif
+
 " Graphical user interface
+color molokai
 if has("gui_running")
   " Use nice fonts
   set guifont=Menlo\ 9
