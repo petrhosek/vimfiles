@@ -1,157 +1,198 @@
 " Vim color file
-" Maintainer:  Damien Gombault <desintegr@gmail.com>
-" WWW:         http://desintegr.googlecode.com/svn/config/vim/colors/monokai.vim
-" Last Change: 2008 Feb 27
-" Version:     0.1.3
-
-set background=dark
+"
+" Author: Tomas Restrepo <tomas@winterdom.com>
+"
+" Note: Based on the monokai theme for textmate
+" by Wimer Hazenberg and its darker variant 
+" by Hamish Stuart Macpherson
+"
 
 hi clear
 
-if exists("syntax_on")
-  syntax reset
+set background=dark
+if version > 580
+    " no guarantees for version 5.8 and below, but this makes it stop
+    " complaining
+    hi clear
+    if exists("syntax_on")
+        syntax reset
+    endif
 endif
-
-let colors_name = "monokai"
-
-hi Normal       guifg=#F8F8F2 guibg=#272822
+let g:colors_name="monokai"
 
 
-" Main highlight groups
-hi Cursor       guibg=fg
-"hi CursorIM
-"hi CursorColumn
-"hi CursorLine
-hi Directory    guifg=#66D9EF gui=none
-hi DiffAdd      guifg=bg guibg=#A6E22E
-hi DiffChange   guifg=bg guibg=#E6DB74
-hi DiffDelete   guifg=bg guibg=#F92672
-hi DiffText     guifg=bg guibg=#E6DB74
-hi ErrorMsg     guifg=#F92672 guibg=bg gui=none
-hi VertSplit    guifg=#3B3A32 guibg=bg gui=none
-hi Folded       guifg=#75715E guibg=bg gui=none
-hi FoldColumn   guifg=#75715E guibg=#3E3D32 gui=none
-hi SignColum    guifg=#75715E guibg=#3E3D32 gui=none
-hi IncSearch    guifg=bg guibg=#E6DB74 gui=none
-hi LineNr       guifg=#75715E guibg=#3E3D32 gui=none
-hi MatchParen   guifg=fg guibg=bg gui=bold
-hi ModeMsg      gui=none
-hi MoreMsg      guifg=#66D9EF gui=none
-hi NonText      guifg=#3B3A32 gui=none
-hi Pmenu        guifg=fg guibg=#3E3D32
-hi PmenuSel     guifg=fg guibg=bg
-hi PmenuSbar    guibg=bg
-hi PmenuThumb   guifg=fg
-hi Question     guifg=#A6E22E gui=none
-hi Search       guifg=bg guibg=#E6DB74 gui=none
-hi SpecialKey   guifg=#3B3A32 gui=none
-hi SpellBad     guisp=#F92672
-hi SpellCap     guisp=#65D9EF
-"hi SpellLocal
-hi SpellRare    guisp=#AE81FF
-hi StatusLine   guifg=fg guibg=#3E3D32 gui=none
-hi StatusLineNC guifg=#75715E guibg=#3E3D32 gui=none
-hi TabLine      guifg=#75715E guibg=#3E3D32 gui=none
-hi TabLineFill  guifg=fg guibg=#3E3D32 gui=none
-hi TabLineSel   guifg=fg guibg=#3E3D32 gui=none
-hi Title        guifg=#F92672 gui=none
-hi Visual       guibg=#49483E gui=none
-"hi VisualNOS
-hi WarningMsg   guifg=#F92672 gui=none
-"hi WildMenu
+hi Boolean         guifg=#AE81FF
+hi Character       guifg=#E6DB74
+hi Number          guifg=#AE81FF
+hi String          guifg=#E6DB74
+hi Conditional     guifg=#F92672               gui=bold
+hi Constant        guifg=#AE81FF               gui=bold
+hi Cursor          guifg=#000000 guibg=#F8F8F0
+hi Debug           guifg=#BCA3A3               gui=bold
+hi Define          guifg=#66D9EF
+hi Delimiter       guifg=#8F8F8F
+hi DiffAdd                       guibg=#13354A
+hi DiffChange      guifg=#89807D guibg=#4C4745
+hi DiffDelete      guifg=#960050 guibg=#1E0010
+hi DiffText                      guibg=#4C4745 gui=italic,bold
 
-"hi Menu
-"hi ScrollBar
-"hi Tooltip
+hi Directory       guifg=#A6E22E               gui=bold
+hi Error           guifg=#960050 guibg=#1E0010
+hi ErrorMsg        guifg=#F92672 guibg=#232526 gui=bold
+hi Exception       guifg=#A6E22E               gui=bold
+hi Float           guifg=#AE81FF
+hi FoldColumn      guifg=#465457 guibg=#000000
+hi Folded          guifg=#465457 guibg=#000000
+hi Function        guifg=#A6E22E
+hi Identifier      guifg=#FD971F
+hi Ignore          guifg=#808080 guibg=bg
+hi IncSearch       guifg=#C4BE89 guibg=#000000
 
+hi Keyword         guifg=#F92672               gui=bold
+hi Label           guifg=#E6DB74               gui=none
+hi Macro           guifg=#C4BE89               gui=italic
+hi SpecialKey      guifg=#66D9EF               gui=italic
 
-" Plugin specific highlight groups
-hi MyTagListFileName guifg=#FD971F guibg=bg gui=none
+hi MatchParen      guifg=#000000 guibg=#FD971F gui=bold
+hi ModeMsg         guifg=#E6DB74
+hi MoreMsg         guifg=#E6DB74
+hi Operator        guifg=#F92672
 
+" complete menu
+hi Pmenu           guifg=#66D9EF guibg=#000000
+hi PmenuSel                      guibg=#808080
+hi PmenuSbar                     guibg=#080808
+hi PmenuThumb      guifg=#66D9EF
 
-" Color groups
-hi Blue    guifg=#66D9EF gui=none
-hi Green   guifg=#A6E22E gui=none
-hi Grey    guifg=#75715E gui=none
-hi Orange  guifg=#FD971F gui=none
-hi Purple  guifg=#AE81FF gui=none
-hi Red     guifg=#F92672 gui=none
-hi White   guifg=#F8F8F2 gui=none
-hi Yellow  guifg=#E6DB74 gui=none
+hi PreCondit       guifg=#A6E22E               gui=bold
+hi PreProc         guifg=#A6E22E
+hi Question        guifg=#66D9EF
+hi Repeat          guifg=#F92672               gui=bold
+hi Search          guifg=#FFFFFF guibg=#455354
+" marks column
+hi SignColumn      guifg=#A6E22E guibg=#232526
+hi SpecialChar     guifg=#F92672               gui=bold
+hi SpecialComment  guifg=#465457               gui=bold
+hi Special         guifg=#66D9EF guibg=bg      gui=italic
+if has("spell")
+    hi SpellBad    guisp=#FF0000 gui=undercurl
+    hi SpellCap    guisp=#7070F0 gui=undercurl
+    hi SpellLocal  guisp=#70F0F0 gui=undercurl
+    hi SpellRare   guisp=#FFFFFF gui=undercurl
+endif
+hi Statement       guifg=#F92672               gui=bold
+hi StatusLine      guifg=#455354 guibg=fg
+hi StatusLineNC    guifg=#808080 guibg=#080808
+hi StorageClass    guifg=#FD971F               gui=italic
+hi Structure       guifg=#66D9EF
+hi Tag             guifg=#F92672               gui=italic
+hi Title           guifg=#ef5939
+hi Todo            guifg=#FFFFFF guibg=bg      gui=bold
 
-hi BlueU   guifg=#66D9EF gui=underline
+hi Typedef         guifg=#66D9EF
+hi Type            guifg=#66D9EF               gui=none
+hi Underlined      guifg=#808080               gui=underline
 
-hi RedR    guifg=fg guibg=#F92672 gui=none
-hi YellowR guifg=bg guibg=#FD971F gui=none
+hi VertSplit       guifg=#808080 guibg=#080808 gui=bold
+hi VisualNOS                     guibg=#403D3D
+hi Visual                        guibg=#403D3D
+hi WarningMsg      guifg=#FFFFFF guibg=#333333 gui=bold
+hi WildMenu        guifg=#66D9EF guibg=#000000
 
+hi Normal          guifg=#F8F8F2 guibg=#272822
+hi Comment         guifg=#75715E
+hi CursorLine                    guibg=#3E3D32
+hi CursorColumn                  guibg=#3E3D32
+hi ColorColumn                   guibg=#3B3A32
+hi LineNr          guifg=#BCBCBC guibg=#3B3A32
+hi NonText         guifg=#75715E
+hi SpecialKey      guifg=#75715E
 
-" Syntax highligh groups
-hi! link Comment      Grey
 "
-hi! link Constant     Purple
-hi! link String       Yellow
-hi! link Character    Yellow
-"hi Number
-"hi Boolean
-"hi Float
+" Support for 256-color terminal
 "
-hi! link Identifier   Green
-"hi Function
-"
-hi! link Statement    Red
-"hi Conditional
-"hi Repeat
-"hi Label
-hi! link Operator     Green
-"hi Keyword
-"hi Exception
-"
-hi! link PreProc      Orange
-"hi Include
-"hi Define
-"hi Macro
-"hi PreCondit
-"
-hi! link Type         Blue
-hi! link StorageClass Red
-"hi Structure
-"hi Typedef
-"
-hi! link Special      Grey
-"hi SpecialChar
-hi! link Tag          Green
-"hi Delimiter
-"hi SpecialComment
-"hi Debug
-"
-hi! link Underlined   BlueU
-"hi Ignore
-hi! link Error        RedR
-hi! link Todo         YellowR
+if &t_Co > 255
+   hi Normal                      ctermbg=234
+   hi CursorLine                  ctermbg=235   cterm=none
+   hi Boolean         ctermfg=135
+   hi Character       ctermfg=144
+   hi Number          ctermfg=135
+   hi String          ctermfg=144
+   hi Conditional     ctermfg=161               cterm=bold
+   hi Constant        ctermfg=135               cterm=bold
+   hi Cursor          ctermfg=16  ctermbg=253
+   hi Debug           ctermfg=225               cterm=bold
+   hi Define          ctermfg=81
+   hi Delimiter       ctermfg=241
 
-" Language specific highligh groups
-" C
-hi link cStatement              Green
-" C++
-hi link cppStatement            Green
-" CSS
-hi link cssBraces               White
-hi link cssFontProp             White
-hi link cssColorProp            White
-hi link cssTextProp             White
-hi link cssBoxProp              White
-hi link cssRenderProp           White
-hi link cssAuralProp            White
-hi link cssRenderProp           White
-hi link cssGeneratedContentProp White
-hi link cssPagingProp           White
-hi link cssTableProp            White
-hi link cssUIProp               White
-hi link cssFontDescriptorProp   White
-" Java
-hi link javaStatement           Green
-" Ruby
-hi link rubyClassVariable       White
-hi link rubyControl             Green
-hi link rubyGlobalVariable      White
-hi link rubyInstanceVariable    White
+   hi DiffAdd                     ctermbg=24
+   hi DiffChange      ctermfg=181 ctermbg=239
+   hi DiffDelete      ctermfg=162 ctermbg=53
+   hi DiffText                    ctermbg=102 cterm=bold
+
+   hi Directory       ctermfg=118               cterm=bold
+   hi Error           ctermfg=219 ctermbg=89
+   hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
+   hi Exception       ctermfg=118               cterm=bold
+   hi Float           ctermfg=135
+   hi FoldColumn      ctermfg=67  ctermbg=16
+   hi Folded          ctermfg=67  ctermbg=16
+   hi Function        ctermfg=118
+   hi Identifier      ctermfg=208               cterm=none
+   hi Ignore          ctermfg=244 ctermbg=232
+   hi IncSearch       ctermfg=193 ctermbg=16
+
+   hi Keyword         ctermfg=161               cterm=bold
+   hi Label           ctermfg=229               cterm=none
+   hi Macro           ctermfg=193
+   hi SpecialKey      ctermfg=81
+
+   hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
+   hi ModeMsg         ctermfg=229
+   hi MoreMsg         ctermfg=229
+   hi Operator        ctermfg=161
+
+   " complete menu
+   hi Pmenu           ctermfg=81  ctermbg=16
+   hi PmenuSel                    ctermbg=244
+   hi PmenuSbar                   ctermbg=232
+   hi PmenuThumb      ctermfg=81
+
+   hi PreCondit       ctermfg=118               cterm=bold
+   hi PreProc         ctermfg=118
+   hi Question        ctermfg=81
+   hi Repeat          ctermfg=161               cterm=bold
+   hi Search          ctermfg=253 ctermbg=66
+
+   " marks column
+   hi SignColumn      ctermfg=118 ctermbg=235
+   hi SpecialChar     ctermfg=161               cterm=bold
+   hi SpecialComment  ctermfg=245               cterm=bold
+   hi Special         ctermfg=81  ctermbg=232
+
+   hi Statement       ctermfg=161               cterm=bold
+   hi StatusLine      ctermfg=238 ctermbg=253
+   hi StatusLineNC    ctermfg=244 ctermbg=232
+   hi StorageClass    ctermfg=208
+   hi Structure       ctermfg=81
+   hi Tag             ctermfg=161
+   hi Title           ctermfg=166
+   hi Todo            ctermfg=231 ctermbg=232   cterm=bold
+
+   hi Typedef         ctermfg=81
+   hi Type            ctermfg=81                cterm=none
+   hi Underlined      ctermfg=244               cterm=underline
+
+   hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
+   hi VisualNOS                   ctermbg=238
+   hi Visual                      ctermbg=235
+   hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
+   hi WildMenu        ctermfg=81  ctermbg=16
+
+   hi Comment         ctermfg=59
+   hi CursorColumn                ctermbg=234
+   hi ColorColumn                 ctermbg=234
+   hi LineNr          ctermfg=250 ctermbg=234
+   hi NonText         ctermfg=59
+   hi SpecialKey      ctermfg=59
+end

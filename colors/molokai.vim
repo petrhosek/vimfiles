@@ -112,6 +112,8 @@ hi SpecialKey      guifg=#465457
 " Support for 256-color terminal
 "
 if &t_Co > 255
+   hi Normal          ctermfg=252 ctermbg=233
+   hi CursorLine                  ctermbg=234   cterm=none
    hi Boolean         ctermfg=135
    hi Character       ctermfg=144
    hi Number          ctermfg=135
@@ -187,9 +189,7 @@ if &t_Co > 255
    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
    hi WildMenu        ctermfg=81  ctermbg=16
 
-   hi Normal          ctermfg=252 ctermbg=233
    hi Comment         ctermfg=59
-   hi CursorLine                  ctermbg=234   cterm=none
    hi CursorColumn                ctermbg=234
    hi ColorColumn                 ctermbg=234
    hi LineNr          ctermfg=250 ctermbg=234
