@@ -28,9 +28,6 @@
 [submodule "bundle/surround"]
 	path = bundle/surround
 	url = git://github.com/tpope/vim-surround.git
-[submodule "bundle/syntastic"]
-	path = bundle/syntastic
-	url = git://github.com/scrooloose/syntastic.git
 [submodule "bundle/latex"]
 	path = bundle/latex
 	url = git://github.com/vim-scripts/LaTeX-Suite-aka-Vim-LaTeX.git
@@ -97,3 +94,18 @@
 [submodule "bundle/pegjs"]
 	path = bundle/pegjs
 	url = git://github.com/alunny/pegjs-vim.git
+[submodule "bundle/css3-syntax"]
+	path = bundle/css3-syntax
+	url = https://github.com/hail2u/vim-css3-syntax.git
+[submodule "bundle/less"]
+	path = bundle/less
+	url = https://github.com/groenewege/vim-less.git
+[submodule "bundle/stylus"]
+	path = bundle/stylus
+	url = git://github.com/wavded/vim-stylus.git
+[submodule "bundle/json"]
+	path = bundle/json
+	url = git://github.com/leshill/vim-json.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git
